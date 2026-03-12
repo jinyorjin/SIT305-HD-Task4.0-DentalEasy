@@ -15,16 +15,19 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
+        // ViewModel 초기화
         viewModel = new ViewModelProvider(this).get(DentalViewModel.class);
 
+        // XML의 ID와 연결 (빨간 줄 해결!)
         EditText etTerm = findViewById(R.id.etDentalTerm);
-        Button btnExplain = findViewById(R.id.btnExplain);
-        TextView tvResult = findViewById(R.id.tvExplanation);
+        Button btnAnalyze = findViewById(R.id.btnAnalyze);
+        TextView tvExplanation = findViewById(R.id.tvExplanation);
 
-        btnExplain.setOnClickListener(v -> {
+        // 버튼 클릭 이벤트 처리
+        btnAnalyze.setOnClickListener(v -> {
             String term = etTerm.getText().toString();
-            String explanation = viewModel.getEasyExplanation(term);
-            tvResult.setText(explanation);
+            String result = viewModel.getAiExplanation(term);
+            tvExplanation.setText(result);
         });
     }
 }
