@@ -1,82 +1,163 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#F8FAFC">
+    android:fillViewport="true"
+    tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#1D4ED8"
         android:orientation="vertical"
-        android:padding="24dp">
+        android:padding="16dp">
 
+        <!-- Initial Disclaimer -->
+        <TextView
+            android:id="@+id/tvDisclaimer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#FFEBEE"
+            android:padding="12dp"
+            android:textColor="#C62828"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            tools:text="⚠️ Disclaimer test" />
+
+        <!-- Title -->
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
             android:text="DentalEasy"
-            android:textColor="#FFFFFF"
+            android:textColor="#0D47A1"
             android:textSize="28sp"
             android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Your AI Dental Guide"
-            android:textColor="#BFDBFE"
-            android:textSize="14sp" />
-    </LinearLayout>
+            android:layout_gravity="center"
+            android:layout_marginBottom="16dp"
+            android:text="AI Dental Term Guide"
+            android:textColor="#546E7A"
+            android:textSize="16sp" />
 
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        app:cardCornerRadius="12dp"
-        app:cardElevation="4dp">
-
+        <!-- Input Section -->
         <EditText
             android:id="@+id/etDentalTerm"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="@android:color/transparent"
-            android:hint="Enter dental terms (e.g. Bone Grafting)"
-            android:padding="16dp" />
-    </androidx.cardview.widget.CardView>
+            android:background="@android:drawable/editbox_background"
+            android:hint="Type a dental term (e.g. Root Canal)"
+            android:inputType="text"
+            android:padding="12dp" />
 
-    <Button
-        android:id="@+id/btnAnalyze"
-        android:layout_width="match_parent"
-        android:layout_height="56dp"
-        android:layout_marginHorizontal="16dp"
-        android:backgroundTint="#1D4ED8"
-        android:text="Ask AI about this →"
-        android:textAllCaps="false" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="AI Explanation"
-        android:textStyle="bold"
-        android:textSize="18sp" />
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_margin="16dp"
-        app:cardCornerRadius="12dp">
-
-        <TextView
-            android:id="@+id/tvExplanation"
+        <Button
+            android:id="@+id/btnAnalyze"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:padding="16dp"
-            android:text="Explanation will appear here..."
-            android:textSize="16sp"
-            android:lineSpacingExtra="4dp" />
-    </androidx.cardview.widget.CardView>
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:backgroundTint="#0D47A1"
+            android:text="Generate Explanation"
+            android:textColor="#FFFFFF" />
 
-</LinearLayout>
+        <!-- Example Terms Section -->
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="8dp"
+            android:text="Or tap an example:"
+            android:textColor="#546E7A"
+            android:textSize="14sp" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvExampleTerms"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:clipToPadding="false"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+
+        <!-- Result Section -->
+        <LinearLayout
+            android:id="@+id/llResultContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="24dp"
+            android:background="#F5F5F5"
+            android:orientation="vertical"
+            android:padding="16dp"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Explanation:"
+                android:textColor="#0D47A1"
+                android:textSize="18sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvExplanation"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="#212121"
+                android:textSize="16sp"
+                tools:text="Simple text explanation will appear here." />
+
+            <TextView
+                android:id="@+id/tvUsuallyMeansTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="What this usually means:"
+                android:textColor="#0D47A1"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvUsuallyMeans"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="#424242"
+                tools:text="Context regarding the diagnosis." />
+
+            <TextView
+                android:id="@+id/tvAfterCareTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Care Tips:"
+                android:textColor="#0D47A1"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/tvAfterCare"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="#424242"
+                tools:text="Take pain relief." />
+
+        </LinearLayout>
+
+        <!-- Privacy Notice -->
+        <TextView
+            android:id="@+id/tvPrivacyNote"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="32dp"
+            android:gravity="center"
+            android:textColor="#757575"
+            android:textSize="12sp"
+            tools:text="Privacy Note" />
+
+    </LinearLayout>
+</ScrollView>
