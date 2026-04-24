@@ -4,14 +4,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#F5F5F5"
     android:fillViewport="true"
     tools:context=".MainActivity">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="vertical">
 
         <!-- Initial Disclaimer -->
         <TextView
@@ -22,142 +22,317 @@
             android:padding="12dp"
             android:textColor="#C62828"
             android:textSize="12sp"
-            android:textStyle="bold"
-            tools:text="⚠️ Disclaimer test" />
+            tools:text="Disclaimer test" />
 
-        <!-- Title -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="8dp"
-            android:text="DentalEasy"
-            android:textColor="#0D47A1"
-            android:textSize="28sp"
-            android:textStyle="bold" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:layout_marginBottom="16dp"
-            android:text="AI Dental Term Guide"
-            android:textColor="#546E7A"
-            android:textSize="16sp" />
-
-        <!-- Input Section -->
-        <EditText
-            android:id="@+id/etDentalTerm"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@android:drawable/editbox_background"
-            android:hint="Type a dental term (e.g. Root Canal)"
-            android:inputType="text"
-            android:padding="12dp" />
-
-        <Button
-            android:id="@+id/btnAnalyze"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:backgroundTint="#0D47A1"
-            android:text="Generate Explanation"
-            android:textColor="#FFFFFF" />
-
-        <!-- Example Terms Section -->
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_marginBottom="8dp"
-            android:text="Or tap an example:"
-            android:textColor="#546E7A"
-            android:textSize="14sp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/rvExampleTerms"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:clipToPadding="false"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
-
-        <!-- Result Section -->
+        <!-- A. Top Header -->
         <LinearLayout
-            android:id="@+id/llResultContainer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:background="#F5F5F5"
+            android:background="#1976D2"
             android:orientation="vertical"
             android:padding="16dp"
-            android:visibility="gone"
-            tools:visibility="visible">
+            android:elevation="4dp">
 
             <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="DentalEasy"
+                android:textColor="#FFFFFF"
+                android:textSize="28sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="2dp"
+                android:text="Your AI Dental Guide"
+                android:textColor="#E3F2FD"
+                android:textSize="14sp" />
+
+            <!-- B. Search Bar as white pill -->
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Explanation:"
-                android:textColor="#0D47A1"
+                android:layout_marginTop="16dp"
+                android:background="@drawable/bg_search_bar"
+                android:orientation="horizontal"
+                android:padding="4dp"
+                android:elevation="2dp">
+
+                <EditText
+                    android:id="@+id/etDentalTerm"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:background="@android:color/transparent"
+                    android:hint="Enter dental terms"
+                    android:inputType="text"
+                    android:padding="12dp"
+                    android:textColor="#212121"
+                    android:textColorHint="#9E9E9E"
+                    android:textSize="14sp" />
+
+                <Button
+                    android:id="@+id/btnAnalyze"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="#1976D2"
+                    android:text="Search"
+                    android:textColor="#FFFFFF" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="16dp">
+
+            <!-- Loading Message -->
+            <TextView
+                android:id="@+id/tvLoadingMessage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:gravity="center"
+                android:text="Analyzing dental term..."
+                android:textColor="#1976D2"
+                android:textSize="14sp"
+                android:textStyle="italic"
+                android:visibility="gone"
+                tools:visibility="visible" />
+
+            <!-- E. Result Section (MOST IMPORTANT) -->
+            <LinearLayout
+                android:id="@+id/llResultContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="24dp"
+                android:background="@drawable/bg_card"
+                android:elevation="2dp"
+                android:orientation="vertical"
+                android:padding="24dp"
+                android:visibility="gone"
+                tools:visibility="visible">
+
+                <!-- 2. Emergency UI Title -->
+                <TextView
+                    android:id="@+id/tvEmergencyTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:text="Emergency Warning"
+                    android:textColor="#C62828"
+                    android:textSize="18sp"
+                    android:textStyle="bold"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Simplified Explanation"
+                    android:textColor="#1976D2"
+                    android:textSize="18sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="What is it?"
+                    android:textColor="#212121"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvExplanation"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textColor="#424242"
+                    android:textSize="14sp"
+                    android:lineSpacingExtra="4dp"
+                    tools:text="Simple text explanation will appear here." />
+
+                <TextView
+                    android:id="@+id/tvUsuallyMeansTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Why is it needed &amp; How it works"
+                    android:textColor="#212121"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvUsuallyMeans"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textColor="#424242"
+                    android:textSize="14sp"
+                    android:lineSpacingExtra="4dp"
+                    tools:text="Context regarding the diagnosis." />
+
+                <TextView
+                    android:id="@+id/tvAfterCareTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="20dp"
+                    android:text="Care Tips"
+                    android:textColor="#212121"
+                    android:textSize="14sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvAfterCare"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textColor="#424242"
+                    android:textSize="14sp"
+                    android:lineSpacingExtra="4dp"
+                    tools:text="Take pain relief." />
+
+                <!-- F. Rounded Blue Button -->
+                <Button
+                    android:id="@+id/btnPostCare"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="24dp"
+                    android:background="@drawable/bg_button"
+                    android:text="View Post-treatment Care"
+                    android:textColor="#FFFFFF"
+                    app:backgroundTint="@null" />
+            </LinearLayout>
+
+            <!-- C. Categories Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="16dp"
+                android:text="Categories"
+                android:textColor="#212121"
                 android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/tvExplanation"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:orientation="vertical">
+
+                <!-- Card 1 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/bg_card"
+                    android:elevation="2dp"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="General Dentistry"
+                        android:textColor="#212121"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="Checkups, fillings, and routine cleanings."
+                        android:textColor="#616161"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <!-- Card 2 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/bg_card"
+                    android:elevation="2dp"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Orthodontics"
+                        android:textColor="#212121"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="Braces, clear aligners, and bite correction."
+                        android:textColor="#616161"
+                        android:textSize="14sp" />
+                </LinearLayout>
+
+                <!-- Card 3 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="16dp"
+                    android:background="@drawable/bg_card"
+                    android:elevation="2dp"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Dental Implants"
+                        android:textColor="#212121"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="6dp"
+                        android:text="Permanent tooth replacements and grafts."
+                        android:textColor="#616161"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <!-- D. Quick AI Summary Section -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="16dp"
+                android:text="Quick AI Examples"
                 android:textColor="#212121"
-                android:textSize="16sp"
-                tools:text="Simple text explanation will appear here." />
-
-            <TextView
-                android:id="@+id/tvUsuallyMeansTitle"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="What this usually means:"
-                android:textColor="#0D47A1"
+                android:textSize="18sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/tvUsuallyMeans"
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvExampleTerms"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textColor="#424242"
-                tools:text="Context regarding the diagnosis." />
+                android:clipToPadding="false"
+                android:orientation="horizontal"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
+            <!-- Privacy Notice -->
             <TextView
-                android:id="@+id/tvAfterCareTitle"
+                android:id="@+id/tvPrivacyNote"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:text="Care Tips:"
-                android:textColor="#0D47A1"
-                android:textStyle="bold" />
-
-            <TextView
-                android:id="@+id/tvAfterCare"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textColor="#424242"
-                tools:text="Take pain relief." />
+                android:layout_marginTop="32dp"
+                android:gravity="center"
+                android:textColor="#9E9E9E"
+                android:textSize="12sp"
+                tools:text="Privacy Note" />
 
         </LinearLayout>
-
-        <!-- Privacy Notice -->
-        <TextView
-            android:id="@+id/tvPrivacyNote"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="32dp"
-            android:gravity="center"
-            android:textColor="#757575"
-            android:textSize="12sp"
-            tools:text="Privacy Note" />
-
     </LinearLayout>
 </ScrollView>

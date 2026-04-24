@@ -19,9 +19,12 @@ public class MainActivity extends AppCompatActivity {
 
     // UI Elements
     private EditText etTerm;
+    private Button btnAnalyze;
     private LinearLayout llResultContainer;
     private TextView tvExplanation, tvUsuallyMeansTitle, tvUsuallyMeans, tvAfterCareTitle, tvAfterCare;
     private TextView tvDisclaimer, tvPrivacyNote;
+    private TextView tvLoadingMessage;
+    private TextView tvEmergencyTitle;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,7 +45,6 @@ public class MainActivity extends AppCompatActivity {
         tvPrivacyNote.setText(AppConstants.PRIVACY_NOTE);
 
         // 5. Setup Generate Button Click
-        Button btnAnalyze = findViewById(R.id.btnAnalyze);
         btnAnalyze.setOnClickListener(v -> handleGenerateClick());
 
         // 6. Observe ViewModel Results
@@ -51,8 +53,11 @@ public class MainActivity extends AppCompatActivity {
 
     private void initViews() {
         etTerm = findViewById(R.id.etDentalTerm);
+        btnAnalyze = findViewById(R.id.btnAnalyze);
         tvDisclaimer = findViewById(R.id.tvDisclaimer);
         tvPrivacyNote = findViewById(R.id.tvPrivacyNote);
+        tvLoadingMessage = findViewById(R.id.tvLoadingMessage);
+        tvEmergencyTitle = findViewById(R.id.tvEmergencyTitle);
 
         llResultContainer = findViewById(R.id.llResultContainer);
         tvExplanation = findViewById(R.id.tvExplanation);
@@ -92,6 +97,21 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void observeViewModel() {
+        // Observe loading state to update UI elements accordingly
+        viewModel.getIsLoading().observe(this, isLoading -> {
+            if (isLoading) {
+                // While loading is true: show loading text, disable button and input
+                tvLoadingMessage.setVisibility(View.VISIBLE);
+                btnAnalyze.setEnabled(false);
+                etTerm.setEnabled(false);
+            } else {
+                // When loading is false: hide loading text, enable button and input
+                tvLoadingMessage.setVisibility(View.GONE);
+                btnAnalyze.setEnabled(true);
+                etTerm.setEnabled(true);
+            }
+        });
+
         viewModel.getExplanation().observe(this, result -> {
             if (result == null) return;
 
@@ -103,6 +123,8 @@ public class MainActivity extends AppCompatActivity {
 
             // Handle Error / Emergency Warning display logic
             if (result.isError()) {
+                llResultContainer.setBackgroundResource(R.drawable.bg_emergency);
+                tvEmergencyTitle.setVisibility(View.VISIBLE);
                 tvExplanation.setTextColor(getResources().getColor(android.R.color.holo_red_dark));
                 // Hide sub-sections
                 tvUsuallyMeansTitle.setVisibility(View.GONE);
@@ -110,6 +132,8 @@ public class MainActivity extends AppCompatActivity {
                 tvAfterCareTitle.setVisibility(View.GONE);
                 tvAfterCare.setVisibility(View.GONE);
             } else {
+                llResultContainer.setBackgroundResource(R.drawable.bg_card);
+                tvEmergencyTitle.setVisibility(View.GONE);
                 tvExplanation.setTextColor(getResources().getColor(android.R.color.black));
                 
                 // Show sub-sections

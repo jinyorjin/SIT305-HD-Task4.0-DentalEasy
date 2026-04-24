@@ -11,7 +11,7 @@ public class AppConstants {
     public static final String PRIVACY_NOTE = "🔒 Privacy Note: Currently, all processing runs locally or via secure mock services on this device. No personal health data is saved or transmitted.";
 
     // Safety and Emergency rules
-    public static final String[] EMERGENCY_KEYWORDS = {"severe bleeding", "can't breathe", "unconscious", "emergency", "choking", "excessive bleeding"};
+    public static final String[] EMERGENCY_KEYWORDS = {"severe bleeding", "can't breathe", "unconscious", "emergency", "choking", "excessive bleeding", "swelling affecting breathing", "trauma"};
     public static final String EMERGENCY_WARNING = "🚨 EMERGENCY WARNING 🚨\nIt appears you may be experiencing a medical emergency. Please call emergency services (e.g., 000, 911) or visit a hospital immediately. Do not rely on this app for urgent care.";
 
     public static final String[] EXAMPLE_TERMS = {
