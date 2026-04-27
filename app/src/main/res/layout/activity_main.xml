@@ -80,6 +80,16 @@
                     android:textColor="#FFFFFF" />
             </LinearLayout>
 
+            <Button
+                android:id="@+id/btnViewHistory"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:background="@drawable/bg_button"
+                android:text="View History"
+                android:textColor="#FFFFFF"
+                app:backgroundTint="@null" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -96,6 +106,23 @@
                 android:text="Tap a tooth to view basic information"
                 android:textColor="#5F6C7B"
                 android:textSize="14sp" />
+
+            <Button
+                android:id="@+id/btnToggleDentalChart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_button"
+                android:text="Open Dental Chart"
+                android:textColor="#FFFFFF"
+                app:backgroundTint="@null" />
+
+            <LinearLayout
+                android:id="@+id/chartExpandableContainer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:visibility="gone">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -152,13 +179,13 @@
                     android:gravity="center_horizontal"
                     android:orientation="horizontal">
 
-                    <Button android:id="@+id/btnTooth17" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 17" android:gravity="center" android:text="17" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
-                    <Button android:id="@+id/btnTooth16" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 16" android:gravity="center" android:text="16" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
-                    <Button android:id="@+id/btnTooth15" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 15" android:gravity="center" android:text="15" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
-                    <Button android:id="@+id/btnTooth14" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 14" android:gravity="center" android:text="14" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
-                    <Button android:id="@+id/btnTooth13" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 13" android:gravity="center" android:text="13" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
-                    <Button android:id="@+id/btnTooth12" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 12" android:gravity="center" android:text="12" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
-                    <Button android:id="@+id/btnTooth11" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 11" android:gravity="center" android:text="11" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
+                    <Button android:id="@+id/btnTooth17" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" />
+                    <Button android:id="@+id/btnTooth16" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" />
+                    <Button android:id="@+id/btnTooth15" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" />
+                    <Button android:id="@+id/btnTooth14" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" />
+                    <Button android:id="@+id/btnTooth13" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" />
+                    <Button android:id="@+id/btnTooth12" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" />
+                    <Button android:id="@+id/btnTooth11" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" />
                 </LinearLayout>
 
                 <TextView
@@ -177,13 +204,13 @@
                     android:gravity="center_horizontal"
                     android:orientation="horizontal">
 
-                    <Button android:id="@+id/btnTooth21" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 21" android:gravity="center" android:text="21" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
-                    <Button android:id="@+id/btnTooth22" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 22" android:gravity="center" android:text="22" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
-                    <Button android:id="@+id/btnTooth23" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 23" android:gravity="center" android:text="23" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
-                    <Button android:id="@+id/btnTooth24" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 24" android:gravity="center" android:text="24" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
-                    <Button android:id="@+id/btnTooth25" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 25" android:gravity="center" android:text="25" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
-                    <Button android:id="@+id/btnTooth26" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 26" android:gravity="center" android:text="26" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
-                    <Button android:id="@+id/btnTooth27" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 27" android:gravity="center" android:text="27" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
+                    <Button android:id="@+id/btnTooth21" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" />
+                    <Button android:id="@+id/btnTooth22" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" />
+                    <Button android:id="@+id/btnTooth23" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" />
+                    <Button android:id="@+id/btnTooth24" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" />
+                    <Button android:id="@+id/btnTooth25" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" />
+                    <Button android:id="@+id/btnTooth26" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" />
+                    <Button android:id="@+id/btnTooth27" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" />
                 </LinearLayout>
 
                 <TextView
@@ -202,13 +229,13 @@
                     android:gravity="center_horizontal"
                     android:orientation="horizontal">
 
-                    <Button android:id="@+id/btnTooth37" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 37" android:gravity="center" android:text="37" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
-                    <Button android:id="@+id/btnTooth36" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 36" android:gravity="center" android:text="36" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
-                    <Button android:id="@+id/btnTooth35" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 35" android:gravity="center" android:text="35" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
-                    <Button android:id="@+id/btnTooth34" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 34" android:gravity="center" android:text="34" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
-                    <Button android:id="@+id/btnTooth33" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 33" android:gravity="center" android:text="33" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
-                    <Button android:id="@+id/btnTooth32" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 32" android:gravity="center" android:text="32" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
-                    <Button android:id="@+id/btnTooth31" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 31" android:gravity="center" android:text="31" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
+                    <Button android:id="@+id/btnTooth37" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" />
+                    <Button android:id="@+id/btnTooth36" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" />
+                    <Button android:id="@+id/btnTooth35" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" />
+                    <Button android:id="@+id/btnTooth34" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" />
+                    <Button android:id="@+id/btnTooth33" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" />
+                    <Button android:id="@+id/btnTooth32" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" />
+                    <Button android:id="@+id/btnTooth31" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" />
                 </LinearLayout>
 
                 <TextView
@@ -227,14 +254,15 @@
                     android:gravity="center_horizontal"
                     android:orientation="horizontal">
 
-                    <Button android:id="@+id/btnTooth41" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 41" android:gravity="center" android:text="41" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
-                    <Button android:id="@+id/btnTooth42" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 42" android:gravity="center" android:text="42" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
-                    <Button android:id="@+id/btnTooth43" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 43" android:gravity="center" android:text="43" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
-                    <Button android:id="@+id/btnTooth44" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 44" android:gravity="center" android:text="44" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
-                    <Button android:id="@+id/btnTooth45" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 45" android:gravity="center" android:text="45" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
-                    <Button android:id="@+id/btnTooth46" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 46" android:gravity="center" android:text="46" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
-                    <Button android:id="@+id/btnTooth47" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 47" android:gravity="center" android:text="47" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
+                    <Button android:id="@+id/btnTooth41" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" />
+                    <Button android:id="@+id/btnTooth42" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" />
+                    <Button android:id="@+id/btnTooth43" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" />
+                    <Button android:id="@+id/btnTooth44" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" />
+                    <Button android:id="@+id/btnTooth45" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" />
+                    <Button android:id="@+id/btnTooth46" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" />
+                    <Button android:id="@+id/btnTooth47" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" />
                 </LinearLayout>
+            </LinearLayout>
             </LinearLayout>
 
             <LinearLayout
