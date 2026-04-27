@@ -7,7 +7,7 @@ package com.eunjin.dentaleasy.utils;
 public class AppConstants {
     
     // Privacy and Disclaimer notices
-    public static final String MEDICAL_DISCLAIMER = "⚠️ Important: This app provides simple explanations for educational purposes only. It is NOT professional medical or dental advice. Always consult a qualified dentist for diagnosis and treatment.";
+    public static final String MEDICAL_DISCLAIMER = "This app provides general dental information only.";
     public static final String PRIVACY_NOTE = "🔒 Privacy Note: Currently, all processing runs locally or via secure mock services on this device. No personal health data is saved or transmitted.";
 
     // Safety and Emergency rules

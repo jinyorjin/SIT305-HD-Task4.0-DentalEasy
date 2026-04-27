@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F5F5"
+    android:background="#F8FBFF"
     android:fillViewport="true"
     tools:context=".MainActivity">
 
@@ -18,9 +18,10 @@
             android:id="@+id/tvDisclaimer"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#FFEBEE"
-            android:padding="12dp"
-            android:textColor="#C62828"
+            android:background="#E3F2FD"
+            android:padding="14dp"
+            android:text="This app provides general dental information only."
+            android:textColor="#1565C0"
             android:textSize="12sp"
             tools:text="Disclaimer test" />
 
@@ -28,25 +29,23 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:background="#1976D2"
             android:orientation="vertical"
-            android:padding="16dp"
-            android:elevation="4dp">
+            android:padding="16dp">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="DentalEasy"
-                android:textColor="#FFFFFF"
-                android:textSize="28sp"
+                android:textColor="#1F2D3D"
+                android:textSize="26sp"
                 android:textStyle="bold" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="2dp"
+                android:layout_marginTop="4dp"
                 android:text="Your AI Dental Guide"
-                android:textColor="#E3F2FD"
+                android:textColor="#5F6C7B"
                 android:textSize="14sp" />
 
             <!-- B. Search Bar as white pill -->
@@ -54,10 +53,10 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="16dp"
-                android:background="@drawable/bg_search_bar"
+                android:background="@drawable/bg_card_surface"
                 android:orientation="horizontal"
-                android:padding="4dp"
-                android:elevation="2dp">
+                android:padding="6dp"
+                android:elevation="1dp">
 
                 <EditText
                     android:id="@+id/etDentalTerm"
@@ -79,6 +78,191 @@
                     android:backgroundTint="#1976D2"
                     android:text="Search"
                     android:textColor="#FFFFFF" />
+            </LinearLayout>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Dental Chart"
+                android:textColor="#1F2D3D"
+                android:textSize="22sp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Tap a tooth to view basic information"
+                android:textColor="#5F6C7B"
+                android:textSize="14sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_card_surface"
+                android:elevation="2dp"
+                android:orientation="vertical"
+                android:padding="16dp">
+
+                <FrameLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="220dp">
+
+                    <ImageView
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:contentDescription="Dental chart image"
+                        android:scaleType="fitCenter"
+                        android:src="@drawable/dental_chart" />
+                </FrameLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_card_surface"
+                android:elevation="1dp"
+                android:orientation="vertical"
+                android:padding="14dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Select a tooth"
+                    android:textColor="#1F2D3D"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="2dp"
+                    android:text="Upper Right"
+                    android:textColor="#6B7280"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <Button android:id="@+id/btnTooth17" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 17" android:gravity="center" android:text="17" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
+                    <Button android:id="@+id/btnTooth16" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 16" android:gravity="center" android:text="16" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
+                    <Button android:id="@+id/btnTooth15" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 15" android:gravity="center" android:text="15" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
+                    <Button android:id="@+id/btnTooth14" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 14" android:gravity="center" android:text="14" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
+                    <Button android:id="@+id/btnTooth13" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 13" android:gravity="center" android:text="13" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
+                    <Button android:id="@+id/btnTooth12" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 12" android:gravity="center" android:text="12" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
+                    <Button android:id="@+id/btnTooth11" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 11" android:gravity="center" android:text="11" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="2dp"
+                    android:text="Upper Left"
+                    android:textColor="#6B7280"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <Button android:id="@+id/btnTooth21" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 21" android:gravity="center" android:text="21" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
+                    <Button android:id="@+id/btnTooth22" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 22" android:gravity="center" android:text="22" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
+                    <Button android:id="@+id/btnTooth23" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 23" android:gravity="center" android:text="23" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
+                    <Button android:id="@+id/btnTooth24" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 24" android:gravity="center" android:text="24" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
+                    <Button android:id="@+id/btnTooth25" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 25" android:gravity="center" android:text="25" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
+                    <Button android:id="@+id/btnTooth26" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 26" android:gravity="center" android:text="26" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
+                    <Button android:id="@+id/btnTooth27" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 27" android:gravity="center" android:text="27" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="2dp"
+                    android:text="Lower Left"
+                    android:textColor="#6B7280"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <Button android:id="@+id/btnTooth37" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 37" android:gravity="center" android:text="37" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
+                    <Button android:id="@+id/btnTooth36" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 36" android:gravity="center" android:text="36" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
+                    <Button android:id="@+id/btnTooth35" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 35" android:gravity="center" android:text="35" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
+                    <Button android:id="@+id/btnTooth34" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 34" android:gravity="center" android:text="34" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
+                    <Button android:id="@+id/btnTooth33" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 33" android:gravity="center" android:text="33" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
+                    <Button android:id="@+id/btnTooth32" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 32" android:gravity="center" android:text="32" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
+                    <Button android:id="@+id/btnTooth31" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 31" android:gravity="center" android:text="31" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
+                </LinearLayout>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginBottom="2dp"
+                    android:text="Lower Right"
+                    android:textColor="#6B7280"
+                    android:textSize="12sp" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp"
+                    android:gravity="center_horizontal"
+                    android:orientation="horizontal">
+
+                    <Button android:id="@+id/btnTooth41" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 41" android:gravity="center" android:text="41" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
+                    <Button android:id="@+id/btnTooth42" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 42" android:gravity="center" android:text="42" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
+                    <Button android:id="@+id/btnTooth43" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 43" android:gravity="center" android:text="43" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
+                    <Button android:id="@+id/btnTooth44" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 44" android:gravity="center" android:text="44" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
+                    <Button android:id="@+id/btnTooth45" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 45" android:gravity="center" android:text="45" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
+                    <Button android:id="@+id/btnTooth46" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 46" android:gravity="center" android:text="46" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
+                    <Button android:id="@+id/btnTooth47" android:layout_width="40dp" android:layout_height="40dp" android:layout_margin="4dp" android:background="@drawable/bg_tooth_button" android:backgroundTint="@null" app:backgroundTint="@null" android:contentDescription="Tooth 47" android:gravity="center" android:text="47" android:textAllCaps="false" android:textColor="#1565C0" android:textSize="12sp" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@drawable/bg_card_info"
+                android:elevation="1dp"
+                android:orientation="vertical"
+                android:padding="14dp">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Selected Tooth"
+                    android:textColor="#1F2D3D"
+                    android:textSize="16sp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/tvToothInfo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Tap a tooth to see information."
+                    android:textColor="#425466"
+                    android:textSize="14sp"
+                    tools:text="Tooth 11: Upper right central incisor. Used for biting and appearance." />
             </LinearLayout>
         </LinearLayout>
 
@@ -223,11 +407,14 @@
 
                 <!-- Card 1 -->
                 <LinearLayout
+                    android:id="@+id/cardGeneralDentistry"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:background="@drawable/bg_card"
+                    android:clickable="true"
                     android:elevation="2dp"
+                    android:focusable="true"
                     android:orientation="vertical"
                     android:padding="20dp">
 
@@ -250,11 +437,14 @@
 
                 <!-- Card 2 -->
                 <LinearLayout
+                    android:id="@+id/cardOrthodontics"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:background="@drawable/bg_card"
+                    android:clickable="true"
                     android:elevation="2dp"
+                    android:focusable="true"
                     android:orientation="vertical"
                     android:padding="20dp">
 
@@ -277,11 +467,14 @@
 
                 <!-- Card 3 -->
                 <LinearLayout
+                    android:id="@+id/cardDentalImplants"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="16dp"
                     android:background="@drawable/bg_card"
+                    android:clickable="true"
                     android:elevation="2dp"
+                    android:focusable="true"
                     android:orientation="vertical"
                     android:padding="20dp">
 
