@@ -47,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView tvLoadingMessage;
     private TextView tvEmergencyTitle;
     private TextView tvToothInfo;
+    private TextView tvResponseMeta;
     private static final String TOOTH_CLICK_TAG = "TOOTH_CLICK";
     private static final String[] TOOTH_CODES = {
             "17", "16", "15", "14", "13", "12", "11",
@@ -83,6 +84,8 @@ public class MainActivity extends AppCompatActivity {
         btnAnalyze.setOnClickListener(v -> handleGenerateClick());
         btnViewHistory.setOnClickListener(v -> startActivity(new Intent(this, HistoryActivity.class)));
         btnToggleDentalChart.setOnClickListener(v -> toggleDentalChartVisibility());
+        findViewById(R.id.btnPostCare).setOnClickListener(v ->
+                startActivity(new Intent(this, CareTipsActivity.class)));
 
         // 6. Observe ViewModel Results
         observeViewModel();
@@ -106,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
         tvAfterCareTitle = findViewById(R.id.tvAfterCareTitle);
         tvAfterCare = findViewById(R.id.tvAfterCare);
         tvToothInfo = findViewById(R.id.tvToothInfo);
+        tvResponseMeta = findViewById(R.id.tvResponseMeta);
     }
 
     private void toggleDentalChartVisibility() {
@@ -361,6 +365,7 @@ public class MainActivity extends AppCompatActivity {
 
             // Populate text
             tvExplanation.setText(result.getPlainEnglishExplanation());
+            tvResponseMeta.setText("Source: " + result.getSource() + " | Confidence: " + result.getConfidence());
 
             // Handle Error / Emergency Warning display logic
             if (result.isError()) {

@@ -1,8 +1,11 @@
 package com.eunjin.dentaleasy;
 
+import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -43,6 +46,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
             preview = preview.substring(0, 140) + "...";
         }
         holder.tvDescription.setText(preview);
+        holder.btnShare.setOnClickListener(v -> shareHistoryItem(holder.itemView.getContext(), item));
     }
 
     @Override
@@ -55,6 +59,7 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
         TextView tvTitle;
         TextView tvDescription;
         TextView tvTimestamp;
+        Button btnShare;
 
         ViewHolder(@NonNull View itemView) {
             super(itemView);
@@ -62,7 +67,22 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
             tvTitle = itemView.findViewById(R.id.tvHistoryTitle);
             tvDescription = itemView.findViewById(R.id.tvHistoryDescription);
             tvTimestamp = itemView.findViewById(R.id.tvHistoryTimestamp);
+            btnShare = itemView.findViewById(R.id.btnShareHistory);
         }
+    }
+
+    private void shareHistoryItem(Context context, HistoryItem item) {
+        String safeTitle = item.title == null ? "" : item.title;
+        String safeDescription = item.description == null ? "" : item.description;
+        String shareText = "DentalEasy Result 🦷\n\n"
+                + "Title: " + safeTitle + "\n\n"
+                + safeDescription + "\n\n"
+                + "Shared from DentalEasy App";
+
+        Intent intent = new Intent(Intent.ACTION_SEND);
+        intent.setType("text/plain");
+        intent.putExtra(Intent.EXTRA_TEXT, shareText);
+        context.startActivity(Intent.createChooser(intent, "Share via"));
     }
 
     public static class HistoryItem {

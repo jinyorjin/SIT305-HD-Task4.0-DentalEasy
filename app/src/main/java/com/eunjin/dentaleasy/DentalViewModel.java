@@ -28,7 +28,27 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 public class DentalViewModel extends ViewModel {
-    
+
+    /** Shown when urgent-care keywords are detected; Gemini is not called. */
+    public static final String EMERGENCY_LITERACY_REFUSAL_MESSAGE =
+            "This app is for dental literacy only and cannot provide emergency advice or diagnosis. "
+                    + "If you have severe pain, swelling, bleeding, trauma, fever, infection, or other urgent symptoms, "
+                    + "please contact a dentist or emergency health service immediately.";
+
+    private static final String[] EMERGENCY_DENTAL_KEYWORDS = {
+            "severe pain",
+            "bleeding",
+            "swelling",
+            "trauma",
+            "knocked out tooth",
+            "knocked out",
+            "infection",
+            "pus",
+            "fever",
+            "emergency",
+            "abscess"
+    };
+
     // The provider interface allows us to swap Mock with Real AI later without changing ViewModel
     private final AIProvider aiProvider;
     private static final String SAFETY_NOTE = "This is general information only. Please see a dentist for personal advice.";
@@ -80,6 +100,12 @@ public class DentalViewModel extends ViewModel {
         isLoading.setValue(true);
 
         executorService.execute(() -> {
+            if (question != null && containsEmergencyDentalKeywords(question)) {
+                categoryExplanation.postValue(EMERGENCY_LITERACY_REFUSAL_MESSAGE);
+                isLoading.postValue(false);
+                return;
+            }
+
             String geminiAnswer = requestGeminiExplanation(question);
             if (geminiAnswer == null || geminiAnswer.trim().isEmpty()) {
                 categoryExplanation.postValue(buildMockExplanation(question));
@@ -118,12 +144,18 @@ public class DentalViewModel extends ViewModel {
             return new ExplanationResult("Please enter a dental term to explain.");
         }
 
+        if (containsEmergencyDentalKeywords(term)) {
+            return new ExplanationResult(EMERGENCY_LITERACY_REFUSAL_MESSAGE);
+        }
+
         String geminiAnswer = requestGeminiExplanation(term);
         if (isUsefulGeminiResponse(geminiAnswer)) {
             return new ExplanationResult(
                     geminiAnswer.trim(),
                     "Source: Gemini AI response.",
-                    SAFETY_NOTE
+                    SAFETY_NOTE,
+                    "Gemini",
+                    "High"
             );
         }
 
@@ -132,15 +164,32 @@ public class DentalViewModel extends ViewModel {
             return new ExplanationResult(
                     localMatch.description,
                     "Matched locally by title/keyword/description: " + localMatch.title,
-                    SAFETY_NOTE
+                    SAFETY_NOTE,
+                    "Local",
+                    "Medium"
             );
         }
 
         return new ExplanationResult(
                 LOCAL_NO_MATCH_MESSAGE,
                 "No local fallback match found.",
-                SAFETY_NOTE
+                SAFETY_NOTE,
+                "Local",
+                "Medium"
         );
+    }
+
+    /** Returns true if user text should not be sent to Gemini (urgent-care patterns). */
+    private boolean containsEmergencyDentalKeywords(String raw) {
+        if (raw == null) return false;
+        String normalized = raw.toLowerCase(Locale.US).trim();
+        if (normalized.isEmpty()) return false;
+        for (String keyword : EMERGENCY_DENTAL_KEYWORDS) {
+            if (normalized.contains(keyword)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private boolean isUsefulGeminiResponse(String geminiAnswer) {

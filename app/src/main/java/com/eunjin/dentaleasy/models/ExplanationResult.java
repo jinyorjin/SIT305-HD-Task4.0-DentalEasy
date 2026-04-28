@@ -9,6 +9,8 @@ public class ExplanationResult {
     private String usuallyMeans;
     private String afterCareTip;
     private boolean isError;
+    private String source;
+    private String confidence;
 
     // Standard constructor for successful explanations
     public ExplanationResult(String plainEnglishExplanation, String usuallyMeans, String afterCareTip) {
@@ -16,6 +18,8 @@ public class ExplanationResult {
         this.usuallyMeans = usuallyMeans;
         this.afterCareTip = afterCareTip;
         this.isError = false;
+        this.source = "Local";
+        this.confidence = "Medium";
     }
 
     // Constructor for errors or safety warnings
@@ -24,6 +28,24 @@ public class ExplanationResult {
         this.usuallyMeans = "";
         this.afterCareTip = "";
         this.isError = true;
+        this.source = "Safety";
+        this.confidence = "Low";
+    }
+
+    // Constructor for successful explanations with explicit source/confidence
+    public ExplanationResult(
+            String plainEnglishExplanation,
+            String usuallyMeans,
+            String afterCareTip,
+            String source,
+            String confidence
+    ) {
+        this.plainEnglishExplanation = plainEnglishExplanation;
+        this.usuallyMeans = usuallyMeans;
+        this.afterCareTip = afterCareTip;
+        this.isError = false;
+        this.source = source == null ? "Local" : source;
+        this.confidence = confidence == null ? "Medium" : confidence;
     }
 
     public String getPlainEnglishExplanation() {
@@ -40,5 +62,13 @@ public class ExplanationResult {
 
     public boolean isError() {
         return isError;
+    }
+
+    public String getSource() {
+        return source;
+    }
+
+    public String getConfidence() {
+        return confidence;
     }
 }

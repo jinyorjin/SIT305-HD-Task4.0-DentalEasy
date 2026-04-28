@@ -14,14 +14,21 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.DentalEasy">
         <activity
+            android:name=".CareTipsActivity"
+            android:exported="false"
+            android:enableOnBackInvokedCallback="true" />
+        <activity
             android:name=".CategoryDetailActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:enableOnBackInvokedCallback="true" />
         <activity
             android:name=".HistoryActivity"
-            android:exported="false" />
+            android:exported="false"
+            android:enableOnBackInvokedCallback="true" />
         <activity
             android:name=".MainActivity"
-            android:exported="true">
+            android:exported="true"
+            android:enableOnBackInvokedCallback="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

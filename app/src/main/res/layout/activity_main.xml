@@ -367,6 +367,15 @@
                     tools:text="Simple text explanation will appear here." />
 
                 <TextView
+                    android:id="@+id/tvResponseMeta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="Source: - | Confidence: -"
+                    android:textColor="#757575"
+                    android:textSize="12sp" />
+
+                <TextView
                     android:id="@+id/tvUsuallyMeansTitle"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"

@@ -9,6 +9,7 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.activity.OnBackPressedCallback;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
 
@@ -32,6 +33,13 @@ public class CategoryDetailActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_category_detail);
 
+        getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+            @Override
+            public void handleOnBackPressed() {
+                finish();
+            }
+        });
+
         viewModel = new ViewModelProvider(this).get(DentalViewModel.class);
         initViews();
         setupCategoryContent();
@@ -51,7 +59,7 @@ public class CategoryDetailActivity extends AppCompatActivity {
     }
 
     private void setupListeners() {
-        findViewById(R.id.btnBack).setOnClickListener(v -> finish());
+        findViewById(R.id.btnBack).setOnClickListener(v -> getOnBackPressedDispatcher().onBackPressed());
         btnAskAi.setOnClickListener(v -> handleAskAi());
     }
 
@@ -112,20 +120,23 @@ public class CategoryDetailActivity extends AppCompatActivity {
         // Loading state from ViewModel controls spinner and button state.
         viewModel.getIsLoading().observe(this, this::showLoading);
 
-        // Result text comes from Gemini or fallback mock inside ViewModel.
+        // Result text comes from Gemini, safety block, or fallback mock inside ViewModel.
         viewModel.getCategoryExplanation().observe(this, result -> {
             if (result != null && !result.trim().isEmpty()) {
                 tvResult.setText(result);
+                if (DentalViewModel.EMERGENCY_LITERACY_REFUSAL_MESSAGE.equals(result)) {
+                    tvResponseSource.setText("Source: Safety | Confidence: Low");
+                }
             }
         });
 
         // If fallback was used, inform user without breaking flow.
         viewModel.getUsedMockFallback().observe(this, usedFallback -> {
             if (Boolean.TRUE.equals(usedFallback)) {
-                tvResponseSource.setText("Response source: Mock fallback");
+                tvResponseSource.setText("Source: Local | Confidence: Medium");
                 Toast.makeText(this, "Using mock explanation (API unavailable).", Toast.LENGTH_SHORT).show();
             } else if (Boolean.FALSE.equals(usedFallback)) {
-                tvResponseSource.setText("Response source: Gemini API");
+                tvResponseSource.setText("Source: Gemini | Confidence: High");
             }
         });
     }
