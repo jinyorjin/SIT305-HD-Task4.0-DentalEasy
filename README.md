@@ -2,7 +2,9 @@
 
 
 # DentalEasy: Project Objectives and Technical Approach
+Integration mode: Hybrid
 
+The Android app sends user input to the Google Gemini API for AI-generated dental explanations. If the API is unavailable, the app uses local fallback responses. The AI feature is not fully offline because Gemini API requires a network connection.
 ## Primary Purpose
 
 The main goal of DentalEasy is to simplify dental communication. Clinical terms and post-operative instructions can often be difficult for patients to understand. This app translates professional dental terminology into plain English to help improve patient understanding and reduce anxiety.
