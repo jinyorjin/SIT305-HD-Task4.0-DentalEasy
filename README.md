@@ -5,55 +5,53 @@
 
 ## Primary Purpose
 
-The main goal of DentalEasy is to simplify dental communication. Clinical terms and post-operative instructions are often too complex for patients to understand. This app translates professional dental terminology into simple, plain English to improve patient understanding and reduce anxiety.
+The main goal of DentalEasy is to simplify dental communication. Clinical terms and post-operative instructions can often be difficult for patients to understand. This app translates professional dental terminology into plain English to help improve patient understanding and reduce anxiety.
 
 ## Technical Scope
 
-This project is developed using Java to provide a stable and reliable Android application environment. Java’s object-oriented structure was used to organise the code clearly and support safe handling of user input and medical-related content.
+This project was developed using Java to provide a stable and reliable Android environment. I used Java’s object-oriented structure to organise the code clearly and make it easier to manage user input and application logic, especially when handling health-related information.
 
 ## Architecture (MVVM)
 
 The app follows a basic MVVM (Model-View-ViewModel) structure.
 
-- The UI (Activities) is separated from logic (ViewModel)
-- This helps keep the code clean and easier to maintain
-- ViewModel is used to preserve data during configuration changes such as screen rotation
+- The UI (Activities) is separated from the logic (ViewModel)
+- This prevents the code from becoming difficult to maintain
+- ViewModel helps preserve data during configuration changes such as screen rotation
 
-This structure makes it easier to extend the app in the future.
+This structure also makes the app easier to extend in the future.
 
 ## LLM Integration (Gemini)
 
-This app integrates a Generative AI feature using Google Gemini API.
+This app integrates a Generative AI feature using the Google Gemini API.
 
-- When a user searches for a dental term, the input may be sent to the Gemini API
-- The API generates a simplified explanation in plain language
-- The response is then displayed in the app UI
+When a user searches for a dental term, the input may be sent to the Gemini API, which generates a simplified explanation in plain language. The response is then displayed in the app.
 
-This is a **hybrid approach**:
-- Online: Gemini API generates responses
-- Offline / fallback: The app provides local explanations when the API is unavailable
+The app uses a hybrid approach:
+- Online: Gemini API generates dynamic responses
+- Offline / fallback: The app provides local explanations if the API is unavailable
 
-The AI feature improves the user experience by providing more flexible and natural explanations compared to fixed logic-based responses.
+This approach improves flexibility compared to fixed logic-based responses and helps provide more natural explanations to the user.
 
 ## Privacy and Data Handling
 
-This app uses Google Gemini API for AI-generated explanations.
+This app uses the Google Gemini API for AI-generated explanations.
 
 - User search input may be sent to Google's servers for processing
-- No personal user data is stored permanently
+- No personal data is stored permanently within the app
 - The API key is stored locally in `local.properties` and is not included in the repository
 
-This app is designed for educational purposes only and does not provide medical diagnosis or treatment advice.
+The app is designed for educational purposes only and does not provide medical diagnosis or treatment advice.
 
 ## UI/UX Design
 
 The user interface is built using XML layouts and Material Design components such as CardView.
 
-- Clean layout structure for readability
-- Simple navigation between features (search, category, history)
-- Information grouped into clear sections to reduce cognitive load
+- Clean and simple layout for readability
+- Easy navigation between features (search, category, history)
+- Information grouped into sections to reduce cognitive load
 
-The goal was to create a simple and trustworthy interface suitable for a health-related app.
+The aim was to create a simple and trustworthy interface suitable for a healthcare-related app.
 
 ## Development Environment
 
@@ -62,26 +60,27 @@ The goal was to create a simple and trustworthy interface suitable for a health-
 - Gradle build system
 - Target SDK: 36 (Android 16)
 
-The project uses version control (Git) to track iterative development.
+Git was used to track development progress and manage version control.
+
 ## Safety Handling
 
-Before sending user input to Gemini, the app checks for urgent dental keywords such as severe pain, bleeding, swelling, trauma, fever, infection, or abscess.
+Before sending user input to the Gemini API, the app checks for urgent dental keywords such as severe pain, bleeding, swelling, trauma, fever, infection, or abscess.
 
-If urgent keywords are detected, the app does not send the text to Gemini. Instead, it displays a safety message advising the user to contact a dentist or emergency health service.
+If any of these keywords are detected, the app does not send the request to Gemini. Instead, it displays a safety message advising the user to contact a dentist or emergency health service.
 
-This is because DentalEasy is designed for dental literacy only and does not provide diagnosis, treatment, or emergency medical advice.
+This ensures the app remains appropriate for dental literacy use and avoids providing unsafe or misleading advice.
 
 ## Android 16 Back Navigation Compatibility
 
-DentalEasy supports modern Android back navigation by enabling `android:enableOnBackInvokedCallback="true"` in the AndroidManifest for the main activities.
+DentalEasy supports modern Android back navigation behaviour.
 
-For secondary screens such as CategoryDetailActivity and HistoryActivity, the app uses AndroidX `OnBackPressedDispatcher` with `OnBackPressedCallback`. This means both the system back button/gesture and the custom back buttons follow the same supported back navigation path.
+The app enables `android:enableOnBackInvokedCallback="true"` in the AndroidManifest and uses `OnBackPressedDispatcher` with `OnBackPressedCallback` for secondary screens.
 
-This approach keeps the existing Activity-based navigation structure while improving compatibility with Android 16 behaviour.
+This ensures compatibility with newer Android navigation systems, including predictive back gestures, while maintaining consistent behaviour across all screens.
 
 ## Future Improvements
 
-- Improve AI response quality using better prompt design
-- Add caching for faster responses
-- Expand local knowledge base for better offline support
-- Improve accessibility (font scaling, contrast)
+- Improve AI response quality through better prompt design
+- Add caching to reduce response time
+- Expand the local knowledge base for improved offline support
+- Improve accessibility features such as font scaling and contrast
