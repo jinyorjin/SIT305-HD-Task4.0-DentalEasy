@@ -71,6 +71,14 @@ If urgent keywords are detected, the app does not send the text to Gemini. Inste
 
 This is because DentalEasy is designed for dental literacy only and does not provide diagnosis, treatment, or emergency medical advice.
 
+## Android 16 Back Navigation Compatibility
+
+DentalEasy supports modern Android back navigation by enabling `android:enableOnBackInvokedCallback="true"` in the AndroidManifest for the main activities.
+
+For secondary screens such as CategoryDetailActivity and HistoryActivity, the app uses AndroidX `OnBackPressedDispatcher` with `OnBackPressedCallback`. This means both the system back button/gesture and the custom back buttons follow the same supported back navigation path.
+
+This approach keeps the existing Activity-based navigation structure while improving compatibility with Android 16 behaviour.
+
 ## Future Improvements
 
 - Improve AI response quality using better prompt design
