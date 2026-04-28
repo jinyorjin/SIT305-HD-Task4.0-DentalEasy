@@ -1,25 +1,72 @@
 <img width="300" height="500" alt="image" src="https://github.com/user-attachments/assets/a8848293-3c11-413b-824a-de236ee842f5" />
 
 
-DentalEasy: Project Objectives and Technical Approach
-Primary Purpose
-The main goal of DentalEasy is to simplify dental communication. Clinical terms and post-operative instructions are often too complex for patients to follow. I developed this app to act as a bridge, translating professional jargon into layman's terms to improve patient health literacy and reduce anxiety.
+# DentalEasy: Project Objectives and Technical Approach
 
-Technical Scope with Java
-I chose Java as the core language for this project to ensure a stable and reliable development environment. By leveraging Java’s object-oriented structure, I focused on building a clean codebase that can handle clinical data safely. This choice provides the necessary foundation for integrating complex features in the future.
+## Primary Purpose
 
-Architectural Goal: MVVM Implementation
-One of the key technical objectives was to implement a professional MVVM (Model-View-ViewModel) architecture.
+The main goal of DentalEasy is to simplify dental communication. Clinical terms and post-operative instructions are often too complex for patients to understand. This app translates professional dental terminology into simple, plain English to improve patient understanding and reduce anxiety.
 
-Separation of Logic: I separated the UI components (Activity) from the business logic (ViewModel). This prevents the code from becoming "spaghetti" and makes it much easier to maintain or update specific features.
+## Technical Scope
 
-State Management: Using ViewModels ensures that data remains consistent even during configuration changes, such as screen rotations, providing a smoother user experience.
+This project is developed using Java to provide a stable and reliable Android application environment. Java’s object-oriented structure was used to organise the code clearly and support safe handling of user input and medical-related content.
 
-Infrastructure for AI Integration
-A major objective was to build a "ready-to-scale" infrastructure. While the current version uses logic-based responses, the backend structure is designed to be fully compatible with Large Language Models (LLMs) like Llama 3.2. The goal was to create a modular system where AI APIs can be plugged in without rewriting the core UI.
+## Architecture (MVVM)
 
-UX/UI Strategy
-I used XML and Material Design components, specifically CardView, to create a professional yet approachable look. The objective was to design an interface that feels like a trustworthy medical tool, organizing information into clear categories to minimize cognitive load for the patient.
+The app follows a basic MVVM (Model-View-ViewModel) structure.
 
-Development Environment
-The project was built using the Android SDK with JDK 17 (jbr-17) and managed through Gradle. Standardizing the build environment and maintaining version control via Git were essential parts of the development process to ensure professional-grade software delivery.
+- The UI (Activities) is separated from logic (ViewModel)
+- This helps keep the code clean and easier to maintain
+- ViewModel is used to preserve data during configuration changes such as screen rotation
+
+This structure makes it easier to extend the app in the future.
+
+## LLM Integration (Gemini)
+
+This app integrates a Generative AI feature using Google Gemini API.
+
+- When a user searches for a dental term, the input may be sent to the Gemini API
+- The API generates a simplified explanation in plain language
+- The response is then displayed in the app UI
+
+This is a **hybrid approach**:
+- Online: Gemini API generates responses
+- Offline / fallback: The app provides local explanations when the API is unavailable
+
+The AI feature improves the user experience by providing more flexible and natural explanations compared to fixed logic-based responses.
+
+## Privacy and Data Handling
+
+This app uses Google Gemini API for AI-generated explanations.
+
+- User search input may be sent to Google's servers for processing
+- No personal user data is stored permanently
+- The API key is stored locally in `local.properties` and is not included in the repository
+
+This app is designed for educational purposes only and does not provide medical diagnosis or treatment advice.
+
+## UI/UX Design
+
+The user interface is built using XML layouts and Material Design components such as CardView.
+
+- Clean layout structure for readability
+- Simple navigation between features (search, category, history)
+- Information grouped into clear sections to reduce cognitive load
+
+The goal was to create a simple and trustworthy interface suitable for a health-related app.
+
+## Development Environment
+
+- Android Studio (latest stable version)
+- Java (JDK 17)
+- Gradle build system
+- Target SDK: 36 (Android 16)
+
+The project uses version control (Git) to track iterative development.
+
+## Future Improvements
+
+- Improve AI response quality using better prompt design
+- Add caching for faster responses
+- Expand local knowledge base for better offline support
+- Improve accessibility (font scaling, contrast)
