@@ -54,6 +54,9 @@ The user interface is built using XML layouts and Material Design components suc
 - Information grouped into sections to reduce cognitive load
 
 The aim was to create a simple and trustworthy interface suitable for a healthcare-related app.
+## History Sharing Feature
+
+The History screen includes a Share button for each saved item. This allows users to share dental explanations or tooth information using Android’s native sharing system (`Intent.ACTION_SEND`). Each shared message includes the history item title, explanation, and “Shared from DentalEasy App”.
 
 ## Development Environment
 
