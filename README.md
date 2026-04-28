@@ -63,6 +63,13 @@ The goal was to create a simple and trustworthy interface suitable for a health-
 - Target SDK: 36 (Android 16)
 
 The project uses version control (Git) to track iterative development.
+## Safety Handling
+
+Before sending user input to Gemini, the app checks for urgent dental keywords such as severe pain, bleeding, swelling, trauma, fever, infection, or abscess.
+
+If urgent keywords are detected, the app does not send the text to Gemini. Instead, it displays a safety message advising the user to contact a dentist or emergency health service.
+
+This is because DentalEasy is designed for dental literacy only and does not provide diagnosis, treatment, or emergency medical advice.
 
 ## Future Improvements
 
