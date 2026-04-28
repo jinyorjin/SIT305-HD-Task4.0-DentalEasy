@@ -563,6 +563,53 @@
                 android:textSize="12sp"
                 tools:text="Privacy Note" />
 
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                app:cardBackgroundColor="#FFFFFF"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="2dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="14dp">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="X-ray Learning Concept"
+                        android:textColor="#1F2D3D"
+                        android:textSize="16sp"
+                        android:textStyle="bold" />
+
+                    <Button
+                        android:id="@+id/btnXrayConcept"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:background="@drawable/bg_button"
+                        android:text="View X-ray Reminder Concept"
+                        android:textAllCaps="false"
+                        android:textColor="#FFFFFF"
+                        app:backgroundTint="@null" />
+
+                    <TextView
+                        android:id="@+id/tvXrayConcept"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="10dp"
+                        android:lineSpacingExtra="3dp"
+                        android:text="This is a learning concept only, not medical advice.&#10;&#10;In dental practice, bitewing X-rays may be reviewed more regularly than panoramic X-rays, but timing depends on each patient’s oral health and risk level.&#10;&#10;A future version could support X-ray reminders and image-based AI learning.&#10;&#10;Please consult a qualified dentist for personalised advice."
+                        android:textColor="#425466"
+                        android:textSize="13sp"
+                        android:visibility="gone" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

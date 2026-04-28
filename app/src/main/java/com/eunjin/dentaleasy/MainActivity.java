@@ -86,6 +86,8 @@ public class MainActivity extends AppCompatActivity {
         btnToggleDentalChart.setOnClickListener(v -> toggleDentalChartVisibility());
         findViewById(R.id.btnPostCare).setOnClickListener(v ->
                 startActivity(new Intent(this, CareTipsActivity.class)));
+        findViewById(R.id.btnXrayConcept).setOnClickListener(v ->
+                findViewById(R.id.tvXrayConcept).setVisibility(View.VISIBLE));
 
         // 6. Observe ViewModel Results
         observeViewModel();
