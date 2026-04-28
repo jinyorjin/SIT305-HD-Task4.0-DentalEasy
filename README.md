@@ -1,6 +1,10 @@
 <img width="300" height="500" alt="image" src="https://github.com/user-attachments/assets/a8848293-3c11-413b-824a-de236ee842f5" />
 
+In the initial proposal, an on-device LLM architecture (e.g., Llama or Gemini Nano) was planned to support offline functionality and improved privacy.
 
+However, during implementation, a hybrid approach using the Google Gemini API was selected instead. This decision was made due to the limitations of running on-device models within the available development time and environment.
+
+The current system sends user input to the Gemini API for processing and provides fallback local responses when the API is unavailable. Therefore, the application is not fully offline, and some data may leave the device during AI processing.
 # DentalEasy: Project Objectives and Technical Approach
 Integration mode: Hybrid
 
