@@ -1,12 +1,15 @@
 package com.eunjin.dentaleasy;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -79,10 +82,26 @@ public class HistoryAdapter extends RecyclerView.Adapter<HistoryAdapter.ViewHold
                 + safeDescription + "\n\n"
                 + "Shared from DentalEasy App";
 
-        Intent intent = new Intent(Intent.ACTION_SEND);
-        intent.setType("text/plain");
-        intent.putExtra(Intent.EXTRA_TEXT, shareText);
-        context.startActivity(Intent.createChooser(intent, "Share via"));
+        Intent shareIntent = new Intent(Intent.ACTION_SEND);
+        shareIntent.setType("text/plain");
+        shareIntent.putExtra(Intent.EXTRA_TEXT, shareText);
+
+        Intent chooser = Intent.createChooser(shareIntent, "Share dental information");
+
+        // Only add FLAG_ACTIVITY_NEW_TASK when the context is not an Activity.
+        // On API 36 (Android 16), launching from a non-Activity context without
+        // this flag throws an exception. When context IS an Activity, the flag is
+        // unnecessary and can interfere with the back stack.
+        if (!(context instanceof Activity)) {
+            chooser.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+        }
+
+        try {
+            context.startActivity(chooser);
+        } catch (Exception e) {
+            Toast.makeText(context, "Unable to open share options.", Toast.LENGTH_SHORT).show();
+            Log.e("SHARE_ERROR", "Share failed", e);
+        }
     }
 
     public static class HistoryItem {

@@ -38,6 +38,9 @@ public class HistoryActivity extends AppCompatActivity {
 
         rvHistory = findViewById(R.id.rvHistory);
         Button btnClearHistory = findViewById(R.id.btnClearHistory);
+        Button btnHistoryBack = findViewById(R.id.btnHistoryBack);
+
+        btnHistoryBack.setOnClickListener(v -> getOnBackPressedDispatcher().onBackPressed());
 
         rvHistory.setLayoutManager(new LinearLayoutManager(this));
         historyAdapter = new HistoryAdapter();

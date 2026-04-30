@@ -95,6 +95,12 @@ This ensures compatibility with newer Android navigation systems, including pred
 ## Future Improvements
 
 - Improve AI response quality through better prompt design
-- Add caching to reduce response time
 - Expand the local knowledge base for improved offline support
 - Improve accessibility features such as font scaling and contrast
+
+## Technical Improvements (Higher HD Refactoring)
+
+- **Repository-style separation**: The `DentalViewModel` is now cleanly separated from data concerns. It coordinates UI state and business logic, while `GeminiAIProvider` handles AI/network communication and JSON parsing, and `LocalDentalDataSource` manages fallback knowledge.
+- **LruCache optimization**: Repeated searches for the same dental term are served instantly from memory via `LruCache`, reducing network costs and dramatically improving response speed.
+- **Network pre-check**: By checking the device's network state before calling the Gemini API, offline users receive immediate local fallback results instead of waiting for long connection timeouts.
+- **Result status handling**: The app clearly distinguishes the source of the explanation (`AI_SUCCESS`, `CACHE_HIT`, `OFFLINE_FALLBACK`, `API_ERROR_FALLBACK`, `SAFETY_REFUSAL`). This allows the UI to show informative feedback (e.g., Toast messages) so users understand exactly why they might be seeing local information instead of an AI response.

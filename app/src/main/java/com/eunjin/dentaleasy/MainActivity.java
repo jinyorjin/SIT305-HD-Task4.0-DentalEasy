@@ -369,6 +369,12 @@ public class MainActivity extends AppCompatActivity {
             tvExplanation.setText(result.getPlainEnglishExplanation());
             tvResponseMeta.setText("Source: " + result.getSource() + " | Confidence: " + result.getConfidence());
 
+            if (result.getStatus() == com.eunjin.dentaleasy.models.ExplanationResult.Status.OFFLINE_FALLBACK) {
+                Toast.makeText(this, "Offline mode: showing local dental information.", Toast.LENGTH_LONG).show();
+            } else if (result.getStatus() == com.eunjin.dentaleasy.models.ExplanationResult.Status.API_ERROR_FALLBACK) {
+                Toast.makeText(this, "AI response unavailable: showing local dental information.", Toast.LENGTH_LONG).show();
+            }
+
             // Handle Error / Emergency Warning display logic
             if (result.isError()) {
                 llResultContainer.setBackgroundResource(R.drawable.bg_emergency);

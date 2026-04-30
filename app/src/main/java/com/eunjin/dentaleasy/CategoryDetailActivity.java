@@ -108,7 +108,7 @@ public class CategoryDetailActivity extends AppCompatActivity {
         }
         // Activity stays UI-only: trigger work in ViewModel.
         tvResult.setText("Generating explanation...");
-        viewModel.getExplanation(question);
+        viewModel.generateCategoryExplanation(question);
     }
 
     private void showLoading(boolean loading) {
@@ -120,23 +120,17 @@ public class CategoryDetailActivity extends AppCompatActivity {
         // Loading state from ViewModel controls spinner and button state.
         viewModel.getIsLoading().observe(this, this::showLoading);
 
-        // Result text comes from Gemini, safety block, or fallback mock inside ViewModel.
+        // Result comes from Gemini, safety block, or fallback mock inside ViewModel.
         viewModel.getCategoryExplanation().observe(this, result -> {
-            if (result != null && !result.trim().isEmpty()) {
-                tvResult.setText(result);
-                if (DentalViewModel.EMERGENCY_LITERACY_REFUSAL_MESSAGE.equals(result)) {
-                    tvResponseSource.setText("Source: Safety | Confidence: Low");
+            if (result != null) {
+                tvResult.setText(result.getPlainEnglishExplanation());
+                tvResponseSource.setText("Source: " + result.getSource() + " | Confidence: " + result.getConfidence());
+                
+                if (result.getStatus() == com.eunjin.dentaleasy.models.ExplanationResult.Status.OFFLINE_FALLBACK) {
+                    Toast.makeText(this, "Offline mode: showing local dental information.", Toast.LENGTH_LONG).show();
+                } else if (result.getStatus() == com.eunjin.dentaleasy.models.ExplanationResult.Status.API_ERROR_FALLBACK) {
+                    Toast.makeText(this, "AI response unavailable: showing local dental information.", Toast.LENGTH_LONG).show();
                 }
-            }
-        });
-
-        // If fallback was used, inform user without breaking flow.
-        viewModel.getUsedMockFallback().observe(this, usedFallback -> {
-            if (Boolean.TRUE.equals(usedFallback)) {
-                tvResponseSource.setText("Source: Local | Confidence: Medium");
-                Toast.makeText(this, "Using mock explanation (API unavailable).", Toast.LENGTH_SHORT).show();
-            } else if (Boolean.FALSE.equals(usedFallback)) {
-                tvResponseSource.setText("Source: Gemini | Confidence: High");
             }
         });
     }
