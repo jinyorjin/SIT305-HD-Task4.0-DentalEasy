@@ -98,7 +98,7 @@ This ensures compatibility with newer Android navigation systems, including pred
 - Expand the local knowledge base for improved offline support
 - Improve accessibility features such as font scaling and contrast
 
-## Technical Improvements (Higher HD Refactoring)
+## Technical Improvements 
 
 - **Repository-style separation**: The `DentalViewModel` is now cleanly separated from data concerns. It coordinates UI state and business logic, while `GeminiAIProvider` handles AI/network communication and JSON parsing, and `LocalDentalDataSource` manages fallback knowledge.
 - **LruCache optimization**: Repeated searches for the same dental term are served instantly from memory via `LruCache`, reducing network costs and dramatically improving response speed.
